@@ -66,7 +66,7 @@ function filterOldImages(images, retentionDays, tagPrefixes) {
                 toDelete.push(image);
             } else if (isOld && !isProtected) {
                 toDelete.push(image);
-            } else if (isProtected) {
+            } else if (isProtected || !isOld) {
                 retained.push(image);
             }
 
