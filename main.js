@@ -8,7 +8,8 @@ const program = new Command();
 program
     .requiredOption('--region <region>', 'AWS region')
     .requiredOption('--retention-days <days>', 'Days to retain images', parseInt)
-    .requiredOption('--tag-prefixes <prefixes>', 'Comma-seperated list of tag prefixes');
+    .requiredOption('--tag-prefixes <prefixes>', 'Comma-seperated list of tag prefixes')
+    .option('--dry-run', 'Simulate changes without deleting anything');
 
 program.parse(process.argv);
 const options = program.opts();
@@ -83,12 +84,16 @@ async function deleteImages(repoName, imagesToDelete){
         imageDigest: img.imageDigest,
     }));
 
-    await ecr.batchDeleteImage({
-        repositoryName: repoName,
-        imageIds: batch
-    }).promise();
+    if (options.dryRun) {
+        logger.info(`[DRY-RUN] Would delete from ${repoName}:`, batch);
+    } else {
+        await ecr.batchDeleteImage({
+            repositoryName: repoName,
+            imageIds: batch
+        }).promise();
     
-    logger.info(`Deleted ${batch.length} images from ${repoName}`);
+        logger.info(`Deleted ${batch.length} images from ${repoName}`);
+    }
 }
 
 
