@@ -29,18 +29,27 @@ const ecr = new AWS.ECR();
 
 // Fetch list of all ECR repositories
 async function listRepositories(){
-    const response = await ecr.describeRepositories().promise();
-    return response.repositories.map( repo => repo.repositoryName);
+    try {
+        const response = await ecr.describeRepositories().promise();
+        return response.repositories.map(repo => repo.repositoryName);
+    } catch (err) {
+        logger.error('Failed to list repositories:', err.message);
+        return []; // Return empty list to prevent breaking the flow
+    }
 }
 
 
 // Fetch list of images (with metadata) in a given repository
 async function listImages(repoName) {
-    const response = await ecr.describeImages({
-        repositoryName: repoName,
-    }).promise();
-
-    return response.imageDetails || [];
+    try {
+        const response = await ecr.describeImages({
+            repositoryName: repoName,
+        }).promise();
+        return response.imageDetails || [];
+    } catch (err) {
+        logger.error(`Failed to list images for repository ${repoName}:`, err.message);
+        return []; // Avoid crashing the loop
+    }
 }
 
 
