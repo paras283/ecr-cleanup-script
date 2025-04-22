@@ -1,8 +1,0 @@
-[2025-04-22 02:54:32] INFO: Starting cleaup in region: us-east-1
-[2025-04-22 02:54:33] INFO: Found ECR Repositories: my-repo
-[2025-04-22 02:54:33] INFO: Checking repository: my-repo
-[2025-04-22 02:54:34] INFO: Images to be deleted (0):
-[2025-04-22 02:54:34] INFO: Images to be Retained (1):
-[2025-04-22 02:54:34] INFO:  Digest: sha256:d356b4995e8a893f618bf4adeadb8fabf56bc9d206f19869aca4863fc0be4fda, Tags: latest, PushedAt: Tue Apr 22 2025 02:37:32 GMT+0530 (India Standard Time)
-[2025-04-22 02:54:34] INFO: No old images to delete in my-repo
-[2025-04-22 02:54:34] INFO: Cleanup process completed.
