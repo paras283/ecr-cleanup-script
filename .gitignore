@@ -1,0 +1,9 @@
+# Ignore node modules
+node_modules/
+
+# Ignore log files
+*.log
+ecr-cleanup.log
+
+# Ignore environment variables
+.env
