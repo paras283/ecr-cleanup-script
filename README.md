@@ -18,7 +18,7 @@ This script connects to all ECR repositories in a given AWS region and performs 
 
 1. **Clone the repository**  
    ```bash
-   git clone https://github.com/<your-username>/ecr-cleanup-script.git
+   git clone https://github.com/paras283/ecr-cleanup-script.git
    cd ecr-cleanup-script
 
 2. **Install Dependencies**
